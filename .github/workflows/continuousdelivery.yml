@@ -1,0 +1,35 @@
+name: Continuous Delivery (ZIP)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v5
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean package
+
+      - name: Create ZIP file from JAR(s)
+        run: |
+          mkdir artifacts
+          cp target/*.jar artifacts/
+          zip -r delivery.zip artifacts/
+
+      - name: Upload ZIP as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: delivery-artifact
+          path: delivery.zip
