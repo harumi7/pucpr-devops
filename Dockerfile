@@ -1,4 +1,4 @@
-# Use a Maven base image to build your application
+# Use a Maven base image to build the application
 FROM maven:3.8.3-openjdk-11 AS build
 
 # Set the working directory
