@@ -28,3 +28,15 @@ jobs:
           reporter: github-pr-review
           level: warning
           checkstyle_config: google_checks.xml
+
+  discord:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Discord Commits
+          uses: Sniddl/discord-commits@v1.6
+          with:
+            webhook: ${{ secrets.DISCORD_WEBHOOK }}
+            template: "avatar-with-link"
+            include-extras: true
