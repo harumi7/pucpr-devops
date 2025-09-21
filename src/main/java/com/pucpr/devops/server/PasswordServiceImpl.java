@@ -15,7 +15,7 @@ public class PasswordServiceImpl extends PasswordServiceGrpc.PasswordServiceImpl
     private static final String NUMBERS = "0123456789";
     private static final String SYMBOLS = "!@#$%^&*()-_+=<>?";
 
-    private String generatePassword(int length, boolean includeNumbers, boolean includeSymbols, boolean includeUppercase) {
+    public String generatePassword(int length, boolean includeNumbers, boolean includeSymbols, boolean includeUppercase) {
         String chars = LOWER;
         if (includeUppercase) chars += UPPER;
         if (includeNumbers) chars += NUMBERS;
